@@ -36,10 +36,7 @@ public class UsuarioService {
         List<UsuarioDto> dtos = new ArrayList<>();
 
         for (UsuarioEntity entity : entities) {
-            UsuarioDto dto = toDto(entity);
-            dto.setId(entity.getId());
-
-            dtos.add(dto);
+            dtos.add(toDto(entity));
         }
         return dtos;
     }
@@ -47,6 +44,7 @@ public class UsuarioService {
     private UsuarioEntity toEntity(UsuarioDto dto) {
         UsuarioEntity entity = new UsuarioEntity();
 
+        entity.setId(dto.getId());
         entity.setEmail(dto.getEmail());
         entity.setNome(dto.getNome());
         entity.setSenha(dto.getSenha());
@@ -57,6 +55,7 @@ public class UsuarioService {
     private UsuarioDto toDto(UsuarioEntity entity) {
         UsuarioDto dto = new UsuarioDto();
 
+        dto.setId(entity.getId());
         dto.setEmail(entity.getEmail());
         dto.setNome(entity.getNome());
 
