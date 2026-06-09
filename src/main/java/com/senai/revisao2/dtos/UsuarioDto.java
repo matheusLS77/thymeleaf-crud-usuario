@@ -1,14 +1,20 @@
 package com.senai.revisao2.dtos;
 
 public class UsuarioDto {
-
+    private Long id;
     private String nome;
-
     private String email;
-
     private String senha;
 
     public UsuarioDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
