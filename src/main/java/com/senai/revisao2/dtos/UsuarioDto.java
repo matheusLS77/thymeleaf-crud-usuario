@@ -1,9 +1,19 @@
 package com.senai.revisao2.dtos;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class UsuarioDto {
     private Long id;
+
+    @NotBlank(message = "Campo vazio")
     private String nome;
+
+    @NotBlank(message = "Campo vazio")
+    @Email(message = "E-mail inválido")
     private String email;
+
+    @NotBlank(message = "Campo vazio")
     private String senha;
 
     public UsuarioDto() {

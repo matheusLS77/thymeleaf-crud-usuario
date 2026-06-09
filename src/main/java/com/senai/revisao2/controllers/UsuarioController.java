@@ -2,8 +2,12 @@ package com.senai.revisao2.controllers;
 
 import com.senai.revisao2.dtos.*;
 import com.senai.revisao2.services.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,6 +41,24 @@ public class UsuarioController {
         model.addAttribute("erro","E-mail ou senha inválidos.");
 
         return "login";
+    }
+
+    @PostMapping("/usuarioinserir")
+    public String inserirUsuario(@Valid @ModelAttribute("usuario") UsuarioDto dto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "usuarioinserir";
+        }
+
+        service.cadastrarUsuario(dto);
+        redirectAttributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso ");
+
+        return "redirect:/usuariolista";
+    }
+
+    @GetMapping("/usuarioinserir")
+    public String getCadastro(Model model) {
+        model.addAttribute("usuario", new UsuarioDto());
+        return "usuarioinserir";
     }
 
 }

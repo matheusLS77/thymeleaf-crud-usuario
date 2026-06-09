@@ -5,7 +5,6 @@ import com.senai.revisao2.entities.UsuarioEntity;
 import com.senai.revisao2.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +30,10 @@ public class UsuarioService {
        return dto;
     }
 
+    public void cadastrarUsuario(UsuarioDto dto) {
+        repository.save(toEntity(dto));
+    }
+
     public List<UsuarioDto> listar() {
         List<UsuarioEntity> entities = repository.findAll();
         List<UsuarioDto> dtos = new ArrayList<>();
@@ -38,6 +41,7 @@ public class UsuarioService {
         for (UsuarioEntity entity : entities) {
             dtos.add(toDto(entity));
         }
+
         return dtos;
     }
 
