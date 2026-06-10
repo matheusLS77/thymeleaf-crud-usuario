@@ -55,10 +55,4 @@ public class UsuarioController {
         return "redirect:/usuariolista";
     }
 
-    @GetMapping("/usuarioinserir")
-    public String getCadastro(Model model) {
-        model.addAttribute("usuario", new UsuarioDto());
-        return "usuarioinserir";
-    }
-
 }

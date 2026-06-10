@@ -42,4 +42,10 @@ public class PageController {
         model.addAttribute("usuarios", usuarios);
         return "usuariolista";
     }
+
+    @GetMapping("/usuarioinserir")
+    public String getCadastro(Model model) {
+        model.addAttribute("usuario", new UsuarioDto());
+        return "usuarioinserir";
+    }
 }
