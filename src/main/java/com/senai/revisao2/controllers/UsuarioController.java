@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,6 +52,18 @@ public class UsuarioController {
 
         service.cadastrarUsuario(dto);
         redirectAttributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso ");
+
+        return "redirect:/usuariolista";
+    }
+
+    @PostMapping("/usuarioatualizar/{id}")
+    public String atualizarUsuario(@Valid @ModelAttribute("usuario") UsuarioDto dto, @PathVariable Long id, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "usuarioinserir";
+        }
+
+        service.atualizarUsuario(dto, id);
+        redirectAttributes.addFlashAttribute("mensagem", "Usuário atualizado com sucesso ");
 
         return "redirect:/usuariolista";
     }

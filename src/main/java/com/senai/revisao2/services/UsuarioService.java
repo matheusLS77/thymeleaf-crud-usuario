@@ -34,6 +34,13 @@ public class UsuarioService {
         repository.save(toEntity(dto));
     }
 
+    public void atualizarUsuario(UsuarioDto dto, Long id) {
+        UsuarioEntity entity = toEntity(dto);
+        dto.setId(id);
+
+        repository.save(entity);
+    }
+
     public List<UsuarioDto> listar() {
         List<UsuarioEntity> entities = repository.findAll();
         List<UsuarioDto> dtos = new ArrayList<>();

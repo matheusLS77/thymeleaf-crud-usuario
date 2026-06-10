@@ -1,8 +1,6 @@
 package com.senai.revisao2.controllers;
 
 import com.senai.revisao2.dtos.UsuarioDto;
-import com.senai.revisao2.entities.UsuarioEntity;
-import com.senai.revisao2.repositories.UsuarioRepository;
 import com.senai.revisao2.services.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,8 +42,14 @@ public class PageController {
     }
 
     @GetMapping("/usuarioinserir")
-    public String getCadastro(Model model) {
+    public String getCadastrar(Model model) {
         model.addAttribute("usuario", new UsuarioDto());
         return "usuarioinserir";
+    }
+
+    @GetMapping("/usuarioatualizar")
+    public String getAtualizar(Model model) {
+        model.addAttribute("usuario", new UsuarioDto());
+        return "usuarioatualizar";
     }
 }
