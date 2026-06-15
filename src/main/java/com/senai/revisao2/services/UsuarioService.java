@@ -36,7 +36,7 @@ public class UsuarioService {
 
     public void atualizarUsuario(UsuarioDto dto, Long id) {
         UsuarioEntity entity = toEntity(dto);
-        dto.setId(id);
+        entity.setId(id);
 
         repository.save(entity);
     }
@@ -71,6 +71,10 @@ public class UsuarioService {
         dto.setNome(entity.getNome());
 
         return dto;
+    }
+
+    public Optional<UsuarioEntity> verificarUsuario(Long id) {
+        return repository.findById(id);
     }
 
 }

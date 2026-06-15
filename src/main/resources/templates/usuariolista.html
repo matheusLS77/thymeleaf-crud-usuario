@@ -65,7 +65,7 @@
                         <td th:text="${usuario.nome}">Maria Silva</td>
                         <td th:text="${usuario.email}">maria@email.com</td>
                         <td class="text-end">
-                            <a class="btn btn-sm btn-outline-primary me-1" th:href="@{/usuariolista/usuarioatualizar/{id}(id=${usuario.id})}">Editar</a>
+                            <a class="btn btn-sm btn-outline-primary me-1" th:href="@{/usuarioatualizar/{id}(id=${usuario.id})}">Editar</a>
                             <a class="btn btn-sm btn-outline-danger" th:href="@{/usuariolista/excluir/{id}(id=${usuario.id})}" onclick="return confirm('Deseja excluir este usuario?')">Excluir</a>
                         </td>
                     </tr>

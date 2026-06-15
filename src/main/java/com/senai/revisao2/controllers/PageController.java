@@ -1,12 +1,15 @@
 package com.senai.revisao2.controllers;
 
 import com.senai.revisao2.dtos.UsuarioDto;
+import com.senai.revisao2.entities.UsuarioEntity;
 import com.senai.revisao2.services.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PageController {
@@ -16,7 +19,6 @@ public class PageController {
     public PageController(UsuarioService repository) {
         this.service = repository;
     }
-
 
     @GetMapping("/")
     public String getIndex(){
@@ -47,9 +49,11 @@ public class PageController {
         return "usuarioinserir";
     }
 
-    @GetMapping("/usuarioatualizar")
-    public String getAtualizar(Model model) {
-        model.addAttribute("usuario", new UsuarioDto());
+    @GetMapping("/usuarioatualizar/{id}")
+    public String getAtualizar(@PathVariable Long id, Model model) {
+        Optional<UsuarioEntity> dto = service.verificarUsuario(id);
+
+        model.addAttribute("usuario", dto);
         return "usuarioatualizar";
     }
 }
