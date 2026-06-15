@@ -51,7 +51,7 @@ public class PageController {
 
     @GetMapping("/usuarioatualizar/{id}")
     public String getAtualizar(@PathVariable Long id, Model model) {
-        Optional<UsuarioEntity> dto = service.verificarUsuario(id);
+        UsuarioDto dto = service.verificarUsuario(id);
 
         model.addAttribute("usuario", dto);
         return "usuarioatualizar";

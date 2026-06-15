@@ -56,13 +56,13 @@ public class UsuarioController {
         return "redirect:/usuariolista";
     }
 
-    @PostMapping("/usuarioatualizar/{id}")
-    public String atualizarUsuario(@Valid @ModelAttribute("usuario") UsuarioDto dto, @PathVariable Long id, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    @PostMapping("/usuarioatualizar")
+    public String atualizarUsuario(@Valid @ModelAttribute("usuario") UsuarioDto dto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "usuarioinserir";
+            return "usuarioatualizar";
         }
 
-        service.atualizarUsuario(dto, id);
+        service.atualizarUsuario(dto, dto.getId());
         redirectAttributes.addFlashAttribute("mensagem", "Usuário atualizado com sucesso ");
 
         return "redirect:/usuariolista";

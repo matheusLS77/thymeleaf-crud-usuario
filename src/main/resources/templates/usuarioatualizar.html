@@ -45,30 +45,30 @@
 
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form th:action="@{/usuarioinserir}" th:object="${usuario}" method="post">
+                    <form th:action="@{/usuarioatualizar}" th:object="${usuario}" method="post">
                         <input type="hidden" th:field="*{id}">
 
                         <div class="mb-3">
-                            <label for="nome" class="form-label">Novo nome</label>
-                            <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Digite o nome completo" required>
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Digite o novo nome completo" required>
                             <div class="text-danger small mt-1" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Erro no nome</div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Novo E-mail</label>
-                            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Digite o e-mail" required>
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Digite o novo e-mail" required>
                             <div class="text-danger small mt-1" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erro no e-mail</div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="senha" class="form-label">Nova senha</label>
-                            <input type="password" class="form-control" id="senha" th:field="*{senha}" placeholder="Digite a senha" required>
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="senha" th:field="*{senha}" placeholder="Digite a nova senha" required>
                             <div class="text-danger small mt-1" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">Erro na senha</div>
                         </div>
 
                         <div class="d-flex justify-content-end gap-2">
                             <a class="btn btn-outline-secondary" th:href="@{/usuariolista}">Cancelar</a>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="submit" class="btn btn-primary">Atualizar</button>
                         </div>
                     </form>
                 </div>

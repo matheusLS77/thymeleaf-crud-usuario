@@ -73,8 +73,15 @@ public class UsuarioService {
         return dto;
     }
 
-    public Optional<UsuarioEntity> verificarUsuario(Long id) {
-        return repository.findById(id);
+    public UsuarioDto verificarUsuario(Long id) {
+        Optional<UsuarioEntity> dtoOp = repository.findById(id);
+        UsuarioDto dto = new UsuarioDto();
+
+        if (dtoOp.isPresent()) {
+            dto = toDto(dtoOp.get());
+        }
+
+        return dto;
     }
 
 }
