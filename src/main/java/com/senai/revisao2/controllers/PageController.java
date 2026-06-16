@@ -56,4 +56,12 @@ public class PageController {
         model.addAttribute("usuario", dto);
         return "usuarioatualizar";
     }
+
+    @GetMapping("/usuarioexcluir/{id}")
+    public String getExcluir(@PathVariable Long id, Model model) {
+        UsuarioDto dto = service.verificarUsuario(id);
+
+        model.addAttribute("usuario", dto);
+        return "usuarioexcluir";
+    }
 }

@@ -34,11 +34,26 @@ public class UsuarioService {
         repository.save(toEntity(dto));
     }
 
-    public void atualizarUsuario(UsuarioDto dto, Long id) {
-        UsuarioEntity entity = toEntity(dto);
-        entity.setId(id);
+    public void atualizarUsuario(UsuarioDto dto) {
+        Optional<UsuarioEntity> usuarioOP = repository.findById(dto.getId());
 
-        repository.save(entity);
+        if (usuarioOP.isPresent()) {
+            UsuarioEntity entity = usuarioOP.get();
+
+            entity.setNome(dto.getNome());
+            entity.setEmail(dto.getEmail());
+
+            if (!dto.getNome().isEmpty()) {
+                entity.setSenha(dto.getSenha());
+            }
+
+            repository.save(entity);
+        }
+    }
+
+    public void excluirUsuario(Long id) {
+        repository.deleteById(id);
+
     }
 
     public List<UsuarioDto> listar() {
