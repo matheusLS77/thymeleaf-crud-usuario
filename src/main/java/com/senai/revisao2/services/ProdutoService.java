@@ -23,7 +23,7 @@ public class ProdutoService {
         repository.save(produtoEntity);
     }
 
-    public void atualizar(ProdutoDto produtoDto, long id) {
+    public void atualizar(ProdutoDto produtoDto) {
         Optional<ProdutoEntity> usuarioOP = repository.findById(produtoDto.getId());
 
         if (usuarioOP.isPresent()) {
@@ -39,17 +39,28 @@ public class ProdutoService {
     }
 
     public List<ProdutoDto> listar() {
-        List<ProdutoEntity> produtoEntityList = repository.findAll();
-        List<ProdutoDto> produtoDtoList = new ArrayList<>();
+        List<ProdutoEntity> produtos = repository.findAll();
+        List<ProdutoDto> dtos = new ArrayList<>();
 
-        for (ProdutoEntity produtoEntity : produtoEntityList) {
-            produtoDtoList.add(toDto(produtoEntity));
+        for (ProdutoEntity produtoEntity : produtos) {
+            dtos.add(toDto(produtoEntity));
         }
-        return produtoDtoList;
+        return dtos;
     }
 
     public void remover(long id) {
         repository.deleteById(id);
+    }
+
+    public ProdutoDto obterProduto(Long id) {
+        Optional<ProdutoEntity> dtoOp = repository.findById(id);
+        ProdutoDto dto = new ProdutoDto();
+
+        if (dtoOp.isPresent()) {
+            dto = toDto(dtoOp.get());
+        }
+
+        return dto;
     }
 
     private ProdutoDto toDto(ProdutoEntity entity) {

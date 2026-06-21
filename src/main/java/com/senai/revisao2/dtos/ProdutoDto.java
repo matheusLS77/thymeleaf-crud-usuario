@@ -12,7 +12,7 @@ public class ProdutoDto {
     @Size(max = 100, message = "Máximo de 100 caracteres")
     private String nome;
 
-    @Size(max = 100, message = "Máximo 255 caracteres")
+    @Size(max = 255, message = "Máximo 255 caracteres")
     private String descricao;
 
     @Positive(message = "Preço deve ser positivo")
